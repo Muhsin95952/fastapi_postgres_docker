@@ -5,6 +5,7 @@ from fastapi.params import Body
 from random import randrange
 import psycopg2
 from psycopg2.extras import RealDictCursor
+import time
 
 
 app = FastAPI()
@@ -20,19 +21,22 @@ class Item(BaseModel):
     likes: int = None
     
 
-try:
-    conn = psycopg2.connect(
-    host=os.getenv("DATABASE_HOST", "localhost"),
-    database=os.getenv("DATABASE_NAME"),
-    user=os.getenv("DATABASE_USER"),
-    password=os.getenv("DATABASE_PASSWORD"),
-    cursor_factory=RealDictCursor
-)
-    cursor = conn.cursor()
-    print("Database connection has been Successfull")
-except Exception as error:
-    print("Connection cannot Established")
-    print("Error: ", error)
+while True:
+    try:
+        conn = psycopg2.connect(
+        host=os.getenv("DATABASE_HOST"),
+        database=os.getenv("DATABASE_NAME"),
+        user=os.getenv("DATABASE_USER"),
+        password=os.getenv("DATABASE_PASSWORD"),
+        port=os.getenv("DATABASE_PORT")
+        )
+        cursor = conn.cursor()
+        print("✅ Database connection established")
+        break
+    except Exception as error:
+        print("❌ Failed to connect to DB, retrying in 2 seconds...")
+        print("Error:", error)
+        time.sleep(2)
 
 
 # Create
