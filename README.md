@@ -24,13 +24,19 @@ This is a production-ready FastAPI project featuring:
 
 ## 📁 Project Structure
 .
-* ├── app/ # FastAPI application code
-* ├── tests/ # Unit and integration tests
-* ├── Dockerfile # Dockerfile for app
-* ├── docker-compose.yml # Docker Compose file for multi-container setup
-* ├── .env # Environment variables
-* ├── requirements.txt # Python dependencies
+* ├── app/
+*   └── mia.py
+*   └── models.py
+*   └── schemas.py
+*   └── crud.py
+*   └── database.py
+* ├── tests/
+*   └── main_rest.py
+* ├── Dockerfile 
+* ├── docker-compose.yml
+* ├── .env 
+* ├── requirements.txt 
 * └── .github/
-* └── workflows/
-* └── ci-cd.yaml # GitHub Actions pipeline
+*   └── workflows/
+*     └── ci-cd.yaml 
 
